@@ -6,6 +6,7 @@ function MatchupForm() {
     const [myCharacter, setMyCharacter] = useState('');
     const [enemyCharacter, setEnemyCharacter] = useState('');
     const [outcome, setOutcome] = useState('');
+    const [items, setItems] = useState('');
     const errors = useSelector((store) => store.errors);
     const dispatch = useDispatch();
 
@@ -17,12 +18,11 @@ function MatchupForm() {
             payload: {
                 outcome: outcome,
                 myCharacter: myCharacter,
-                enemyCharacter: enemyCharacter
+                enemyCharacter: enemyCharacter,
+                items: items
             },
         });
     }; // end registerUser
-
-    
 
 return (
     <form className="formPanel" onSubmit={createMatchup}>
@@ -149,8 +149,26 @@ return (
             <label for="Lost">Lost</label>
       
             <div>
-                <input className="btn" type="submit" name="submit" value="Submit Match" />
+            <input className="btn" type="submit" name="submit" value="Submit Match" />
             </div>
+            <div>
+            <img value="13" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
+            <img value="25" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
+            <img value="63" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
         </form>
     );
 }
