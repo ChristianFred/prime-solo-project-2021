@@ -3,18 +3,54 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
- * This Route gets all the matches
+ * This Route gets all the Characters. 
  */
 router.get('/', (req, res) => {
-  // GET route code here
+  let queryString = `SELECT Character FROM "Characters"`;
+  pool.query(queryString)
+    .then((result) => {
+      console.log('our Character response', result.rows);
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('Characters response error', err);
+      res.sendStatus(500);
+    })
 });
 
 /**
- * POST route template
+ * This Route gets all the Items.
  */
+router.get('/', (req, res) => {
+  let queryString = `SELECT name FROM "Items"`;
+  pool.query(queryString)
+    .then((result) => {
+      console.log('our Items response', result.rows);
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('Items response error', err);
+      res.sendStatus(500);
+    })
+});
+// Add A new matchup to the Database.
 router.post('/', (req, res) => {
-  // POST route code here
+  const sqlText = `INSERT INTO "Matchup" ("outcome","myCharacter","enemyCharacter","user_id")
+                  VALUES($1, $2, $3, $4);`;
+const sqlParams = [
+  req.body.outcome,
+  req.body.myCharacter,
+  req.body.enemyCharacter,
+  req.user.id
+]
+
+pool.query(sqlText, sqlParams).then((response) => {
+  console.log('POST successful', response);
+  res.sendStatus(201);
+}).catch((error) => {
+  console.error('POST Error', error);
+  res.sendStatus(500);
+})
 });
 
 module.exports = router;
