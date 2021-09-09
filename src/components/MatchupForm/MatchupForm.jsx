@@ -13,7 +13,7 @@ function MatchupForm() {
         event.preventDefault();
 
         dispatch({
-            type: '',
+            type: 'ADD_MATCHUP',
             payload: {
                 outcome: outcome,
                 myCharacter: myCharacter,
@@ -149,7 +149,7 @@ return (
             <label for="Lost">Lost</label>
       
             <div>
-                <input className="btn" type="submit" name="submit" value="Next" />
+                <input className="btn" type="submit" name="submit" value="Submit Match" />
             </div>
         </form>
     );
