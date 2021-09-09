@@ -28,8 +28,8 @@ function Nav() {
               Homepage
             </Link>
 
-            <Link className="navLink" to="/info">
-              Info Page
+            <Link className="navLink" to="/MatchupList">
+              Matchup List
             </Link>
             <Link className="navLink" to="/MatchupForm">
               Matchup Form

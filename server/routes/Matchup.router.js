@@ -3,10 +3,10 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * This Route gets all the Characters. 
+ * This Route gets all Matches. 
  */
 router.get('/', (req, res) => {
-  let queryString = `SELECT Character FROM "Characters"`;
+  let queryString = `SELECT * FROM "Matchup"`;
   pool.query(queryString)
     .then((result) => {
       console.log('our Character response', result.rows);

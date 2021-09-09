@@ -147,28 +147,14 @@ return (
             <label for="Won">Won</label>
         <input id="Lost" type="radio" name="outcome" value="False" onChange={(event) => setOutcome(event.target.value)}></input>
             <label for="Lost">Lost</label>
+
+        <img value="13" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
+        <img value="25" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
+        <img value="63" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
       
             <div>
             <input className="btn" type="submit" name="submit" value="Submit Match" />
             </div>
-            <div>
-            <img value="13" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
-            <img value="25" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
-            <img value="63" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
         </form>
     );
 }
