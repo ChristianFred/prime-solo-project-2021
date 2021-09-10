@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MatchupForm from '../MatchupForm/MatchupForm';
+import MatchupEdit from '../MatchupEdit/MatchupEdit';
 
 import './App.css';
 
@@ -67,6 +68,14 @@ function App() {
             path="/MatchupList"
           >
             <MatchupList />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows MatchupList else shows LoginPage
+            exact
+            path="/MatchupEdit"
+          >
+            <MatchupEdit />
           </ProtectedRoute>
 
           <ProtectedRoute

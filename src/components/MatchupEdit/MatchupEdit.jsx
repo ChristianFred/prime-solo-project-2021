@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-function MatchupList() {
+function MatchupEdit() {
 const [myCharacter, setCharacter] = useState('');
 const [enemy, setEnemy] = useState('');
 const dispatch = useDispatch();
@@ -34,7 +34,7 @@ console.log('matchup Reducer currently has', matches);
   return (
     <>
     <form className="formPanel" onSubmit={searchMatchup}>
-    <h1>View Matchups</h1>
+    <h1>Edit Matchups</h1>
     <label for="Played">Played Character:</label>
     <select name="Characters" id="Characters" onChange={(event) => setCharacter(event.target.value)}>
             <option value="0">Select a Character</option>
@@ -159,44 +159,39 @@ console.log('matchup Reducer currently has', matches);
         </div>
     </form>
 
-    <div className="container">
-      <h2>Matchups</h2>
+      
       <p>All of the Selected Matchs can be seen below:</p>
-      <div className="tables-container">
-
-          {matches.map(match => {
-            return (
-            <div key={match.id}>
-              <div>{match.outcome}</div>
-              <div>{match.myCharacter}</div>
-              <div>{match.enemyCharacter}</div>
-              <div>{match.Item1}</div>
-              <div>{match.Item2}</div>
-              <div>{match.Item3}</div>
-              <div>{match.Item4}</div>
-              <div>{match.Item5}</div>
-              <div>{match.Item6}</div>
-            </div>
-            );
-          })}
-
-   </div>
-   </div>
-  </>
-
-
-
-
-
-
-
-
-
-
-
-
-
+             <div>
+                <h2>Matchups</h2>
+                <table>
+                <tbody>
+                  {matches.map(match => {
+                    return (
+                      <tr key={match.id}>
+                            <td>{match.outcome}</td>
+                             <td>{match.myCharacter}</td>
+                             <td>{match.enemyCharacter}</td>
+                            <td>{match.Item1}</td>
+                            <td>{match.Item2}</td>
+                            <td>{match.Item3}</td>
+                            <td>{match.Item4}</td>
+                            <td>{match.Item5}</td>
+                            <td>{match.Item6}</td>
+                            <td><button onClick={() => {
+                               dispatch({ type: 'EDIT_MATCHUP', payload: match.id })
+                              }}>Edit</button></td>
+                            <td><button onClick={() => {
+                               dispatch({ type: 'DELETE_MATCHUP', payload: match.id})
+                              }}>Delete</button></td>
+                            
+                      </tr>
+                    );
+                })}
+            </tbody>
+          </table>
+      </div>
+    </>
   );
 }
 
-export default MatchupList;
+export default MatchupEdit;

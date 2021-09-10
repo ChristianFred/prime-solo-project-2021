@@ -27,13 +27,16 @@ function Nav() {
             <Link className="navLink" to="/user">
               Homepage
             </Link>
-
-            <Link className="navLink" to="/MatchupList">
-              Matchup List
-            </Link>
             <Link className="navLink" to="/MatchupForm">
               Matchup Form
             </Link>
+            <Link className="navLink" to="/MatchupList">
+              Matchup List
+            </Link>
+            <Link className="navLink" to="/MatchupEdit">
+              Matchup Edit
+            </Link>
+            
 
             <LogOutButton className="navLink" />
           </>
