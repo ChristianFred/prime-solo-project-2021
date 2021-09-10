@@ -1,15 +1,17 @@
 import axios from "axios";
 const {takeLatest, put } = require("redux-saga/effects");
 
-function* fetchMatchup() {
+function* searchMatchup(action) {
+    console.log('searchMatchup response:', action.payload.myCharacter);
     try {
-        const res = yield axios.get('/api/Matchup');
+        const res = yield axios.get(`/api/Matchup${action.payload.myCharacter}`);
+        console.log('action.payload.id:', action.payload.myCharacter);
         yield put({
             type: 'SET_MATCHUP_LIST',
             payload: res.data
         })
     } catch (error) {
-        console.log('error in fetchMatchup', error);
+        console.log('error in searchMatchup', error);
     }
 }
 
@@ -24,7 +26,7 @@ function* addMatchup(action) {
 }
 
 function* MatchupSaga() {
-    yield takeLatest('FETCH_MATCHUP', fetchMatchup);
+    yield takeLatest('FETCH_SPECIFIC_MATCHUP', searchMatchup);
     yield takeLatest('ADD_MATCHUP', addMatchup);
 }
 
