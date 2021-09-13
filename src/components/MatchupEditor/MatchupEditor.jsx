@@ -5,7 +5,6 @@ function MatchupEditor() {
     const [myCharacter, setMyCharacter] = useState('');
     const [enemyCharacter, setEnemyCharacter] = useState('');
     const [outcome, setOutcome] = useState('');
-    const [id, setId] = useState('');
     const [items, setItems] = useState('');
     const matchToEdit = useSelector((store) => store.sendingReducer);
     const dispatch = useDispatch();
@@ -13,15 +12,14 @@ function MatchupEditor() {
 console.log('matchToEdit is:', matchToEdit)
     const editMatchup = (event) => {
         event.preventDefault();
-        setId(matchToEdit.id)
     console.log('Id',matchToEdit.id)
         dispatch({
             type: 'EDIT_MATCHUP',
             payload: {
+                id: matchToEdit.id,
                 outcome: outcome,
                 myCharacter: myCharacter,
                 enemyCharacter: enemyCharacter,
-                id: id
 
             },
         });

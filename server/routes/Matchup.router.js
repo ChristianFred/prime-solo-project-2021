@@ -70,31 +70,19 @@ router.delete('/:id', (req,res) => {
 })
 
 router.put('/:id', (req,res) => {
-  const updatedMatch = req.params;
+  const id = req.params.id
   console.log('req.params are:', req.params);
   const sqlText = `UPDATE "Matchup"
   SET "outcome" = $1,
   "myCharacter" = $2,
-  "enemyCharacter" = $3,
-  "Item1" = $4,
-  "Item2" = $5,
-  "Item3" = $6,
-  "Item4" = $7,
-  "Item5" = $8,
-  "Item6" = $9
-  WHERE id = $10;`;
+  "enemyCharacter" = $3
+  WHERE id = $4;`;
 
   const queryValues = [
-    updatedMatch.outcome,
-    updatedMatch.myCharacter,
-    updatedMatch.enemyCharacter,
-    updatedMatch.Item1,
-    updatedMatch.Item2,
-    updatedMatch.Item3,
-    updatedMatch.Item4,
-    updatedMatch.Item5,
-    updatedMatch.Item6,
-    updatedMatch.id
+    req.body.outcome,
+    req.body.myCharacter,
+    req.body.enemyCharacter,
+    id
   ];
   pool.query(sqlText, queryValues).then(() => {
     res.sendStatus(200); }).catch((err) => {

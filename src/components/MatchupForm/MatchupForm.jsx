@@ -5,9 +5,9 @@ function MatchupForm() {
     const [myCharacter, setMyCharacter] = useState('');
     const [enemyCharacter, setEnemyCharacter] = useState('');
     const [outcome, setOutcome] = useState('');
-    const [items, setItems] = useState('');
-    const errors = useSelector((store) => store.errors);
+    const item = ''
     const dispatch = useDispatch();
+    const matchItems = [];
 
     const createMatchup = (event) => {
         event.preventDefault();
@@ -21,7 +21,15 @@ function MatchupForm() {
                 items: items
             },
         });
-    }; // end registerUser
+    }; 
+
+function addItem(item) {
+console.log('the current Item added is', item);
+matchItems.push(item)
+console.log('the contents of matchItems is:', matchItems);
+item = ''
+
+}
 
 return (
     <form className="formPanel" onSubmit={createMatchup}>
@@ -147,9 +155,8 @@ return (
         <input id="Lost" type="radio" name="outcome" value="2" onChange={(event) => setOutcome(event.target.value)}></input>
             <label for="Lost">Lost</label>
 
-        <img value="13" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
-        <img value="25" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
-        <img value="63" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
+        <img value="10" src="/items/Control_Ward_item.png" onClick={addItem(this)}/>
+
       
             <div>
             <input className="btn" type="submit" name="submit" value="Submit Match" />

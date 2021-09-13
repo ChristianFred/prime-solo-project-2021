@@ -39,9 +39,9 @@ function* deleteMatchup(action) {
 }
 
 function* editMatchup(action) {
-    console.log('action.payload', action.payload);
+    console.log('This is what is being sent', action.payload);
     try{
-        yield axios.put(`api/Matchup/${action.payload}`)
+        yield axios.put(`api/Matchup/${action.payload.id}`, action.payload)
     } catch (error) {
         console.log('Error Editing the selected Matchup', error);
         yield put({ type: 'EDIT_MATCH_FAILED' });
