@@ -89,7 +89,6 @@ router.put('/:id', (req,res) => {
   "Item5" = $8,
   "Item6" = $9
   WHERE id = $10;`;
-  
   const queryValues = [
     req.body.outcome,
     req.body.myCharacter,
