@@ -34,7 +34,7 @@ item = ''
 return (
     <form className="formPanel" onSubmit={createMatchup}>
     <h2>Add A new Matchup</h2>
-    <label for="Played">Your Character:</label>
+    <label htmlFor="Played">Your Character:</label>
         <select name="Characters" id="Characters" onChange={(event) => setMyCharacter(event.target.value)}>
             <option value="0">Select a Character</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
@@ -91,7 +91,7 @@ return (
             <option value="154">Ziggs</option><option value="155">Zilean</option><option value="156">Zoe</option>
             <option value="157">Zyra</option>
         </select>
-        <label for="Enemy">Your Enemy Laner:</label>
+        <label htmlFor="Enemy">Your Enemy Laner:</label>
         <select name="Characters" id="Characters" onChange={(event) => setEnemyCharacter(event.target.value)}>
             <option value="0">Select a Character</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
@@ -151,11 +151,16 @@ return (
 
     <p>Please select The Outcome of the Match:</p>
         <input id="Won" type="radio" name="outcome" value="1" onChange={(event) => setOutcome(event.target.value)}></input>
-            <label for="Won">Won</label>
+            <label htmlFor="Won">Won</label>
         <input id="Lost" type="radio" name="outcome" value="2" onChange={(event) => setOutcome(event.target.value)}></input>
-            <label for="Lost">Lost</label>
+            <label htmlFor="Lost">Lost</label>
 
-        <img value="10" src="/items/Control_Ward_item.png" onClick={addItem(this)}/>
+        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(10) }}/>
+        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(20) }} />
+        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(30) }} />
+        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(40) }} />
+        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(50) }} />
+        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(60) }} />
 
       
             <div>
