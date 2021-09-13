@@ -61,12 +61,46 @@ pool.query(sqlText, sqlParams).then((response) => {
 router.delete('/:id', (req,res) => {
   console.log('req.params are:',req.params)
   const sqlText = `DELETE FROM "Matchup" WHERE id=$1;`;
-  pool.query(sqlText, [req.params])
+  pool.query(sqlText, [req.params.id])
   .then(() => { res.sendStatus(200); })
   .catch((error) => {
   console.error('DELETE Error', error);
   res.sendStatus(500);
   })
 })
+
+router.put('/:id', (req,res) => {
+  const updatedMatch = req.params;
+  console.log('req.params are:', req.params);
+  const sqlText = `UPDATE "Matchup"
+  SET "outcome" = $1,
+  "myCharacter" = $2,
+  "enemyCharacter" = $3,
+  "Item1" = $4,
+  "Item2" = $5,
+  "Item3" = $6,
+  "Item4" = $7,
+  "Item5" = $8,
+  "Item6" = $9
+  WHERE id = $10;`;
+
+  const queryValues = [
+    updatedMatch.outcome,
+    updatedMatch.myCharacter,
+    updatedMatch.enemyCharacter,
+    updatedMatch.Item1,
+    updatedMatch.Item2,
+    updatedMatch.Item3,
+    updatedMatch.Item4,
+    updatedMatch.Item5,
+    updatedMatch.Item6,
+    updatedMatch.id
+  ];
+  pool.query(sqlText, queryValues).then(() => {
+    res.sendStatus(200); }).catch((err) => {
+      console.log('Error completing the Updated Match', err);
+      res.sendStatus(500);
+    });
+  });
 
 module.exports = router;

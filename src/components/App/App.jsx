@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MatchupForm from '../MatchupForm/MatchupForm';
 import MatchupEdit from '../MatchupEdit/MatchupEdit';
+import MatchupEditor from '../MatchupEditor/MatchupEditor';
 
 import './App.css';
 
@@ -71,11 +72,19 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows MatchupList else shows LoginPage
+            // logged in shows MatchupEdit List else shows LoginPage
             exact
             path="/MatchupEdit"
           >
             <MatchupEdit />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows MatchupEditor else shows LoginPage
+            exact
+            path="/MatchupEditor"
+          >
+            <MatchupEditor />
           </ProtectedRoute>
 
           <ProtectedRoute

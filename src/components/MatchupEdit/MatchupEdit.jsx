@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 function MatchupEdit() {
@@ -7,6 +8,7 @@ const [myCharacter, setCharacter] = useState('');
 const [enemy, setEnemy] = useState('');
 const dispatch = useDispatch();
 const matches = useSelector((store) => store.matchupReducer);
+const history = useHistory();
 console.log('matchup Reducer currently has', matches);
 
   const searchEnemyMatchup = (event) => {
@@ -17,7 +19,7 @@ console.log('matchup Reducer currently has', matches);
         enemy: enemy
       }
     })
-  }
+  }; // end searchEnemyMatchup
 
   const searchMatchup = (event) => {
     event.preventDefault();
@@ -28,9 +30,15 @@ console.log('matchup Reducer currently has', matches);
         myCharacter: myCharacter
       }
     });
-  
-  
-  }; // end registerUser
+  }; // end searchMatchup
+
+  const editMatchup = (event) => {
+    console.log('Inside editMatchup')
+    console.log('current matchup id:', matchup.id)
+    history.push('/MatchupEditor');
+   
+  }; // end editMatchup
+
   return (
     <>
     <form className="formPanel" onSubmit={searchMatchup}>
@@ -177,9 +185,7 @@ console.log('matchup Reducer currently has', matches);
                             <td>{match.Item4}</td>
                             <td>{match.Item5}</td>
                             <td>{match.Item6}</td>
-                            <td><button onClick={() => {
-                               dispatch({ type: 'EDIT_MATCHUP', payload: match.id })
-                              }}>Edit</button></td>
+                            <td><button onClick={editMatchup}>Edit</button></td>
                             <td><button onClick={() => {
                                dispatch({ type: 'DELETE_MATCHUP', payload: match.id})
                               }}>Delete</button></td>

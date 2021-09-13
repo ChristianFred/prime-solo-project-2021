@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-function MatchupForm() {
+function MatchupEditor() {
     const [myCharacter, setMyCharacter] = useState('');
     const [enemyCharacter, setEnemyCharacter] = useState('');
     const [outcome, setOutcome] = useState('');
@@ -158,4 +158,4 @@ return (
     );
 }
 
-export default MatchupForm;
+export default MatchupEditor;
