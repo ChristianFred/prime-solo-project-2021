@@ -38,10 +38,21 @@ function* deleteMatchup(action) {
     }
 }
 
+function* editMatchup(action) {
+    console.log('This is what is being sent', action.payload);
+    try{
+        yield axios.put(`api/Matchup/${action.payload.id}`, action.payload)
+    } catch (error) {
+        console.log('Error Editing the selected Matchup', error);
+        yield put({ type: 'EDIT_MATCH_FAILED' });
+    }
+}
+
 function* MatchupSaga() {
     yield takeLatest('FETCH_SPECIFIC_MATCHUP', searchMatchup);
     yield takeLatest('ADD_MATCHUP', addMatchup);
     yield takeLatest('DELETE_MATCHUP', deleteMatchup);
+    yield takeLatest('EDIT_MATCHUP', editMatchup);
 }
 
 export default MatchupSaga;

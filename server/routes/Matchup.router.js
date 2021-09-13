@@ -40,13 +40,19 @@ router.get('/', (req, res) => {
 
 // Add A new matchup to the Database.
 router.post('/', (req, res) => {
-  const sqlText = `INSERT INTO "Matchup" ("outcome","myCharacter","enemyCharacter","user_id")
-                  VALUES($1, $2, $3, $4);`;
+  const sqlText = `INSERT INTO "Matchup" ("outcome","myCharacter","enemyCharacter","user_id","Item1","Item2","Item3","Item4","Item5","Item6")
+                  VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
 const sqlParams = [
   req.body.outcome,
   req.body.myCharacter,
   req.body.enemyCharacter,
-  req.user.id
+  req.user.id,
+  req.body.Item1,
+  req.body.Item2,
+  req.body.Item3,
+  req.body.Item4,
+  req.body.Item5,
+  req.body.Item6
 ]
 
 pool.query(sqlText, sqlParams).then((response) => {
@@ -61,12 +67,46 @@ pool.query(sqlText, sqlParams).then((response) => {
 router.delete('/:id', (req,res) => {
   console.log('req.params are:',req.params)
   const sqlText = `DELETE FROM "Matchup" WHERE id=$1;`;
-  pool.query(sqlText, [req.params])
+  pool.query(sqlText, [req.params.id])
   .then(() => { res.sendStatus(200); })
   .catch((error) => {
   console.error('DELETE Error', error);
   res.sendStatus(500);
   })
 })
+
+router.put('/:id', (req,res) => {
+  const id = req.params.id
+  console.log('req.params are:', req.params);
+  const sqlText = `UPDATE "Matchup"
+  SET "outcome" = $1,
+  "myCharacter" = $2,
+  "enemyCharacter" = $3,
+  "Item1" = $4,
+  "Item2" = $5,
+  "Item3" = $6,
+  "Item4" = $7,
+  "Item5" = $8,
+  "Item6" = $9
+  WHERE id = $10;`;
+  
+  const queryValues = [
+    req.body.outcome,
+    req.body.myCharacter,
+    req.body.enemyCharacter,
+    req.body.Item1,
+    req.body.Item2,
+    req.body.Item3,
+    req.body.Item4,
+    req.body.Item5,
+    req.body.Item6,
+    id
+  ];
+  pool.query(sqlText, queryValues).then(() => {
+    res.sendStatus(200); }).catch((err) => {
+      console.log('Error completing the Updated Match', err);
+      res.sendStatus(500);
+    });
+  });
 
 module.exports = router;

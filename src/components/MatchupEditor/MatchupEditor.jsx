@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-function MatchupForm() {
+function MatchupEditor() {
     const [myCharacter, setMyCharacter] = useState('');
     const [enemyCharacter, setEnemyCharacter] = useState('');
     const [outcome, setOutcome] = useState('');
+    const matchToEdit = useSelector((store) => store.sendingReducer);
     const dispatch = useDispatch();
     const matchItems = [];
-    matchItems.length = Math.min(matchItems.length, 5);
+    matchItems.length =Math.min(matchItems.length, 5);
 
-    const createMatchup = (event) => {
+    const editMatchup = (event) => {
         event.preventDefault();
-
+    console.log('Id',matchToEdit.id)
         dispatch({
-            type: 'ADD_MATCHUP',
+            type: 'EDIT_MATCHUP',
             payload: {
+                id: matchToEdit.id,
                 outcome: outcome,
                 myCharacter: myCharacter,
                 enemyCharacter: enemyCharacter,
@@ -28,18 +30,23 @@ function MatchupForm() {
         });
     }; 
 
-function addItem(item) {
-    console.log('the current Item added is', item);
-matchItems.push(item)
-console.log('the contents of matchItems is:', matchItems);
-}
-
+    if (matchToEdit.outcome === 1){
+        matchToEdit.outcome = 'Won'
+    }
+    else if (matchToEdit.outcome === 2){
+        matchToEdit.outcome = 'Lost'
+    }
+    function addItem(item) {
+        console.log('the current Item added is', item);
+         matchItems.push(item)
+        console.log('the contents of matchItems is:', matchItems);
+    }
 return (
-    <form className="formPanel" onSubmit={createMatchup}>
-    <h2>Add A new Matchup</h2>
-    <label htmlFor="Played">Your Character:</label>
+    <form className="formPanel" onSubmit={editMatchup}>
+    <h2>Edit the Matchup</h2>
+        <label htmlFor="Played">Your Character was: {matchToEdit.myCharacter} </label>
         <select name="Characters" id="Characters" onChange={(event) => setMyCharacter(event.target.value)}>
-            <option value="0">Select a Character</option>
+            <option value="0">Select a New Character</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
             <option value="4">Akshan</option><option value="5">Alistar</option><option value="6">Amumu</option>
             <option value="7">Anivia</option><option value="8">Annie</option><option value="9">Aphelios</option>
@@ -94,9 +101,9 @@ return (
             <option value="154">Ziggs</option><option value="155">Zilean</option><option value="156">Zoe</option>
             <option value="157">Zyra</option>
         </select>
-        <label htmlFor="Enemy">Your Enemy Laner:</label>
+        <label htmlFor="Enemy">Your Enemy Laner was: {matchToEdit.enemyCharacter} </label>
         <select name="Characters" id="Characters" onChange={(event) => setEnemyCharacter(event.target.value)}>
-            <option value="0">Select a Character</option>
+            <option value="0">Pick A Enemy</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
             <option value="4">Akshan</option><option value="5">Alistar</option><option value="6">Amumu</option>
             <option value="7">Anivia</option><option value="8">Annie</option><option value="9">Aphelios</option>
@@ -153,24 +160,24 @@ return (
         </select>
 
     <p>Please select The Outcome of the Match:</p>
+        <p> The previous selection was: {matchToEdit.outcome} </p>
         <input id="Won" type="radio" name="outcome" value="1" onChange={(event) => setOutcome(event.target.value)}></input>
             <label htmlFor="Won">Won</label>
         <input id="Lost" type="radio" name="outcome" value="2" onChange={(event) => setOutcome(event.target.value)}></input>
             <label htmlFor="Lost">Lost</label>
 
-        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(10) }} />
-        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(20) }} />
-        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(30) }} />
-        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(40) }} />
-        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(50) }} />
-        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(60) }} />
-
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(10) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(20) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(30) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(40) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(50) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(60) }} />
       
             <div>
-            <input className="btn" type="submit" name="submit" value="Submit Match" />
+            <input className="btn" type="submit" name="submit" value="Submit Edited Match" />
             </div>
         </form>
     );
 }
 
-export default MatchupForm;
+export default MatchupEditor;

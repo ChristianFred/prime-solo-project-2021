@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 function MatchupEdit() {
@@ -7,6 +8,7 @@ const [myCharacter, setCharacter] = useState('');
 const [enemy, setEnemy] = useState('');
 const dispatch = useDispatch();
 const matches = useSelector((store) => store.matchupReducer);
+const history = useHistory();
 console.log('matchup Reducer currently has', matches);
 
   const searchEnemyMatchup = (event) => {
@@ -17,7 +19,7 @@ console.log('matchup Reducer currently has', matches);
         enemy: enemy
       }
     })
-  }
+  }; // end searchEnemyMatchup
 
   const searchMatchup = (event) => {
     event.preventDefault();
@@ -28,14 +30,13 @@ console.log('matchup Reducer currently has', matches);
         myCharacter: myCharacter
       }
     });
-  
-  
-  }; // end registerUser
+  }; // end searchMatchup
+
   return (
     <>
     <form className="formPanel" onSubmit={searchMatchup}>
     <h1>Edit Matchups</h1>
-    <label for="Played">Played Character:</label>
+    <label htmlFor="Played">Played Character:</label>
     <select name="Characters" id="Characters" onChange={(event) => setCharacter(event.target.value)}>
             <option value="0">Select a Character</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
@@ -97,7 +98,7 @@ console.log('matchup Reducer currently has', matches);
         <input className="btn" type="submit" name="submit" value="Search for Matches" />
         </form>
         <form className="formPanel" onSubmit={searchEnemyMatchup}>
-        <label for="Games Against">Games Against:</label>
+        <label htmlFor="Games Against">Games Against:</label>
         <select name="Against" id="Against" onChange={(event) => setEnemy(event.target.value)}>
           <option value="0">Select a Opposing Laner</option>
           <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
@@ -178,12 +179,19 @@ console.log('matchup Reducer currently has', matches);
                             <td>{match.Item5}</td>
                             <td>{match.Item6}</td>
                             <td><button onClick={() => {
-                               dispatch({ type: 'EDIT_MATCHUP', payload: match.id })
-                              }}>Edit</button></td>
+                          dispatch({ type: 'SEND_TO_EDITOR', payload: { 
+                            id: match.id, 
+                            myCharacter: match.myCharacter,
+                            enemyCharacter: match.enemyCharacter,
+                            outcome: match.outcome,
+                            Item1: match.Item1,
+                            Item2: match.Item2,
+                            Item3: match.Item3,
+                            Item4: match.Item4,
+                            Item5: match.Item5,
+                            Item6: match.Item6}}), history.push('/MatchupEditor')}}>Edit</button></td>
                             <td><button onClick={() => {
-                               dispatch({ type: 'DELETE_MATCHUP', payload: match.id})
-                              }}>Delete</button></td>
-                            
+                               dispatch({ type: 'DELETE_MATCHUP', payload: match.id})}}>Delete</button></td>
                       </tr>
                     );
                 })}

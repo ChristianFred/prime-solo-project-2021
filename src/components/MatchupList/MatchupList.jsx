@@ -35,7 +35,7 @@ console.log('matchup Reducer currently has', matches);
     <>
     <form className="formPanel" onSubmit={searchMatchup}>
     <h1>View Matchups</h1>
-    <label for="Played">Played Character:</label>
+    <label htmlFor="Played">Played Character:</label>
     <select name="Characters" id="Characters" onChange={(event) => setCharacter(event.target.value)}>
             <option value="0">Select a Character</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
@@ -97,7 +97,7 @@ console.log('matchup Reducer currently has', matches);
         <input className="btn" type="submit" name="submit" value="Search for Matches" />
         </form>
         <form className="formPanel" onSubmit={searchEnemyMatchup}>
-        <label for="Games Against">Games Against:</label>
+        <label htmlFor="Games Against">Games Against:</label>
         <select name="Against" id="Against" onChange={(event) => setEnemy(event.target.value)}>
           <option value="0">Select a Opposing Laner</option>
           <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
