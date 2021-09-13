@@ -5,11 +5,11 @@ function MatchupEditor() {
     const [myCharacter, setMyCharacter] = useState('');
     const [enemyCharacter, setEnemyCharacter] = useState('');
     const [outcome, setOutcome] = useState('');
-    const [items, setItems] = useState('');
     const matchToEdit = useSelector((store) => store.sendingReducer);
     const dispatch = useDispatch();
+    const matchItems = [];
+    matchItems.length =Math.min(matchItems.length, 5);
 
-console.log('matchToEdit is:', matchToEdit)
     const editMatchup = (event) => {
         event.preventDefault();
     console.log('Id',matchToEdit.id)
@@ -20,7 +20,12 @@ console.log('matchToEdit is:', matchToEdit)
                 outcome: outcome,
                 myCharacter: myCharacter,
                 enemyCharacter: enemyCharacter,
-
+                Item1: matchItems[0],
+                Item2: matchItems[1],
+                Item3: matchItems[2],
+                Item4: matchItems[3],
+                Item5: matchItems[4],
+                Item6: matchItems[5]
             },
         });
     }; 
@@ -30,6 +35,11 @@ console.log('matchToEdit is:', matchToEdit)
     }
     else if (matchToEdit.outcome === 2){
         matchToEdit.outcome = 'Lost'
+    }
+    function addItem(item) {
+        console.log('the current Item added is', item);
+         matchItems.push(item)
+        console.log('the contents of matchItems is:', matchItems);
     }
 return (
     <form className="formPanel" onSubmit={editMatchup}>
@@ -156,9 +166,12 @@ return (
         <input id="Lost" type="radio" name="outcome" value="2" onChange={(event) => setOutcome(event.target.value)}></input>
             <label htmlFor="Lost">Lost</label>
 
-        <img value="13" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
-        <img value="25" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
-        <img value="63" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(10) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(20) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(30) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(40) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(50) }} />
+        <img src="/items/Control_Ward_item.png" onClick={() => { addItem(60) }} />
       
             <div>
             <input className="btn" type="submit" name="submit" value="Submit Edited Match" />

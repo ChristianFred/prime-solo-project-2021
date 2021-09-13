@@ -40,13 +40,19 @@ router.get('/', (req, res) => {
 
 // Add A new matchup to the Database.
 router.post('/', (req, res) => {
-  const sqlText = `INSERT INTO "Matchup" ("outcome","myCharacter","enemyCharacter","user_id")
-                  VALUES($1, $2, $3, $4);`;
+  const sqlText = `INSERT INTO "Matchup" ("outcome","myCharacter","enemyCharacter","user_id","Item1","Item2","Item3","Item4","Item5","Item6")
+                  VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
 const sqlParams = [
   req.body.outcome,
   req.body.myCharacter,
   req.body.enemyCharacter,
-  req.user.id
+  req.user.id,
+  req.body.Item1,
+  req.body.Item2,
+  req.body.Item3,
+  req.body.Item4,
+  req.body.Item5,
+  req.body.Item6
 ]
 
 pool.query(sqlText, sqlParams).then((response) => {
@@ -75,13 +81,25 @@ router.put('/:id', (req,res) => {
   const sqlText = `UPDATE "Matchup"
   SET "outcome" = $1,
   "myCharacter" = $2,
-  "enemyCharacter" = $3
-  WHERE id = $4;`;
-
+  "enemyCharacter" = $3,
+  "Item1" = $4,
+  "Item2" = $5,
+  "Item3" = $6,
+  "Item4" = $7,
+  "Item5" = $8,
+  "Item6" = $9
+  WHERE id = $10;`;
+  
   const queryValues = [
     req.body.outcome,
     req.body.myCharacter,
     req.body.enemyCharacter,
+    req.body.Item1,
+    req.body.Item2,
+    req.body.Item3,
+    req.body.Item4,
+    req.body.Item5,
+    req.body.Item6,
     id
   ];
   pool.query(sqlText, queryValues).then(() => {

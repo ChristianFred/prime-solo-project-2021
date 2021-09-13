@@ -5,9 +5,9 @@ function MatchupForm() {
     const [myCharacter, setMyCharacter] = useState('');
     const [enemyCharacter, setEnemyCharacter] = useState('');
     const [outcome, setOutcome] = useState('');
-    const item = ''
     const dispatch = useDispatch();
     const matchItems = [];
+    matchItems.length = Math.min(matchItems.length, 5);
 
     const createMatchup = (event) => {
         event.preventDefault();
@@ -18,17 +18,20 @@ function MatchupForm() {
                 outcome: outcome,
                 myCharacter: myCharacter,
                 enemyCharacter: enemyCharacter,
-                items: items
+                Item1: matchItems[0],
+                Item2: matchItems[1],
+                Item3: matchItems[2],
+                Item4: matchItems[3],
+                Item5: matchItems[4],
+                Item6: matchItems[5]
             },
         });
     }; 
 
 function addItem(item) {
-console.log('the current Item added is', item);
+    console.log('the current Item added is', item);
 matchItems.push(item)
 console.log('the contents of matchItems is:', matchItems);
-item = ''
-
 }
 
 return (
@@ -155,7 +158,7 @@ return (
         <input id="Lost" type="radio" name="outcome" value="2" onChange={(event) => setOutcome(event.target.value)}></input>
             <label htmlFor="Lost">Lost</label>
 
-        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(10) }}/>
+        <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(10) }} />
         <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(20) }} />
         <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(30) }} />
         <img  src="/items/Control_Ward_item.png" onClick={() => { addItem(40) }} />
