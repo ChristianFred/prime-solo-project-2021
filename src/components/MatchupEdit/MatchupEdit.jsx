@@ -32,13 +32,6 @@ console.log('matchup Reducer currently has', matches);
     });
   }; // end searchMatchup
 
-  const editMatchup = (event) => {
-    console.log('Inside editMatchup')
-    console.log('current matchup id:', matchup.id)
-    history.push('/MatchupEditor');
-   
-  }; // end editMatchup
-
   return (
     <>
     <form className="formPanel" onSubmit={searchMatchup}>
@@ -185,11 +178,20 @@ console.log('matchup Reducer currently has', matches);
                             <td>{match.Item4}</td>
                             <td>{match.Item5}</td>
                             <td>{match.Item6}</td>
-                            <td><button onClick={editMatchup}>Edit</button></td>
                             <td><button onClick={() => {
-                               dispatch({ type: 'DELETE_MATCHUP', payload: match.id})
-                              }}>Delete</button></td>
-                            
+                          dispatch({ type: 'SEND_TO_EDITOR', payload: { 
+                            id: match.id, 
+                            myCharacter: match.myCharacter,
+                            enemyCharacter: match.enemyCharacter,
+                            outcome: match.outcome,
+                            Item1: match.Item1,
+                            Item2: match.Item2,
+                            Item3: match.Item3,
+                            Item4: match.Item4,
+                            Item5: match.Item5,
+                            Item6: match.Item6}}), history.push('/MatchupEditor')}}>Edit</button></td>
+                            <td><button onClick={() => {
+                               dispatch({ type: 'DELETE_MATCHUP', payload: match.id})}}>Delete</button></td>
                       </tr>
                     );
                 })}

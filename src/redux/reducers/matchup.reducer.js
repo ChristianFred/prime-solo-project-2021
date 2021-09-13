@@ -7,5 +7,4 @@ const matchupReducer = (state = [], action) => {
     }
 }
 
-
 export default matchupReducer;

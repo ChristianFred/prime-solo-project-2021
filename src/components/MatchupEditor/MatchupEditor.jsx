@@ -5,30 +5,40 @@ function MatchupEditor() {
     const [myCharacter, setMyCharacter] = useState('');
     const [enemyCharacter, setEnemyCharacter] = useState('');
     const [outcome, setOutcome] = useState('');
+    const [id, setId] = useState('');
     const [items, setItems] = useState('');
-    const errors = useSelector((store) => store.errors);
+    const matchToEdit = useSelector((store) => store.sendingReducer);
     const dispatch = useDispatch();
 
-    const createMatchup = (event) => {
+console.log('matchToEdit is:', matchToEdit)
+    const editMatchup = (event) => {
         event.preventDefault();
-
+        setId(matchToEdit.id)
+    console.log('Id',matchToEdit.id)
         dispatch({
-            type: 'ADD_MATCHUP',
+            type: 'EDIT_MATCHUP',
             payload: {
                 outcome: outcome,
                 myCharacter: myCharacter,
                 enemyCharacter: enemyCharacter,
-                items: items
+                id: id
+
             },
         });
-    }; // end registerUser
+    }; 
 
+    if (matchToEdit.outcome === 1){
+        matchToEdit.outcome = 'Won'
+    }
+    else if (matchToEdit.outcome === 2){
+        matchToEdit.outcome = 'Lost'
+    }
 return (
-    <form className="formPanel" onSubmit={createMatchup}>
-    <h2>Add A new Matchup</h2>
-    <label for="Played">Your Character:</label>
+    <form className="formPanel" onSubmit={editMatchup}>
+    <h2>Edit the Matchup</h2>
+        <label for="Played">Your Character was: {matchToEdit.myCharacter} </label>
         <select name="Characters" id="Characters" onChange={(event) => setMyCharacter(event.target.value)}>
-            <option value="0">Select a Character</option>
+            <option value="0">Select a New Character</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
             <option value="4">Akshan</option><option value="5">Alistar</option><option value="6">Amumu</option>
             <option value="7">Anivia</option><option value="8">Annie</option><option value="9">Aphelios</option>
@@ -83,9 +93,9 @@ return (
             <option value="154">Ziggs</option><option value="155">Zilean</option><option value="156">Zoe</option>
             <option value="157">Zyra</option>
         </select>
-        <label for="Enemy">Your Enemy Laner:</label>
+        <label for="Enemy">Your Enemy Laner was: {matchToEdit.enemyCharacter} </label>
         <select name="Characters" id="Characters" onChange={(event) => setEnemyCharacter(event.target.value)}>
-            <option value="0">Select a Character</option>
+            <option value="0">Pick A Enemy</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
             <option value="4">Akshan</option><option value="5">Alistar</option><option value="6">Amumu</option>
             <option value="7">Anivia</option><option value="8">Annie</option><option value="9">Aphelios</option>
@@ -142,6 +152,7 @@ return (
         </select>
 
     <p>Please select The Outcome of the Match:</p>
+        <p> The previous selection was: {matchToEdit.outcome} </p>
         <input id="Won" type="radio" name="outcome" value="1" onChange={(event) => setOutcome(event.target.value)}></input>
             <label for="Won">Won</label>
         <input id="Lost" type="radio" name="outcome" value="2" onChange={(event) => setOutcome(event.target.value)}></input>
@@ -152,7 +163,7 @@ return (
         <img value="63" src="/items/Control_Ward_item.png" onClick={() => setItems(event.target.value)} />
       
             <div>
-            <input className="btn" type="submit" name="submit" value="Submit Match" />
+            <input className="btn" type="submit" name="submit" value="Submit Edited Match" />
             </div>
         </form>
     );
