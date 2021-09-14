@@ -8,15 +8,24 @@ const router = express.Router();
 router.get('/', (req, res) => {
   console.log(req.query)
   let queryString = `SELECT outcome, "Matchup".id,
-  "Mine"."Character" AS "myCharacter",
-  "Enemy"."Character" AS "enemyCharacter",
-  "Item1".name AS "Item1",
-  "Item2".name AS "Item2",
-  "Item3".name AS "Item3",
-  "Item4".name AS "Item4",
-  "Item5".name AS "Item5",
-  "Item6".name AS "Item6" FROM "Matchup"
- JOIN "Characters"  AS "Mine" ON "Mine".id = "Matchup"."myCharacter"
+ "Mine"."Character" AS "myCharacter",
+ "Mine".image_path AS player_image_path,
+ "Enemy"."Character" AS "enemyCharacter",
+ "Enemy".image_path AS enemy_image_path,
+ "Item1".name AS "Item1",
+ "Item1".image_path AS Item1_image_path,
+ "Item2".name AS "Item2",
+ "Item2".image_path AS Item2_image_path,
+ "Item3".name AS "Item3",
+ "Item3".image_path AS Item3_image_path,
+ "Item4".name AS "Item4",
+ "Item4".image_path AS Item4_image_path,
+ "Item5".name AS "Item5",
+ "Item5".image_path AS Item5_image_path,
+ "Item6".name AS "Item6",
+ "Item6".image_path AS Item6_image_path
+  FROM "Matchup"
+ JOIN "Characters" AS "Mine" ON "Mine".id = "Matchup"."myCharacter"
  JOIN "Characters" AS "Enemy" ON "Enemy".id = "Matchup"."enemyCharacter"
  JOIN "Items" AS "Item1" ON "Item1".id = "Matchup"."Item1"
  JOIN "Items" AS "Item2" ON "Item2".id = "Matchup"."Item2"
@@ -89,7 +98,6 @@ router.put('/:id', (req,res) => {
   "Item5" = $8,
   "Item6" = $9
   WHERE id = $10;`;
-  
   const queryValues = [
     req.body.outcome,
     req.body.myCharacter,
