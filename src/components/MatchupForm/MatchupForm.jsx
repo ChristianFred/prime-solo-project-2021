@@ -360,7 +360,10 @@ return (
             <img src="/Items/Sapphire_Crystal_item.png" onClick={() => { addItem(42) }} />
             <img src="/Items/Sheen_item.png" onClick={() => { addItem(43) }} />
             <img src="/Items/Stopwatch_item.png" onClick={() => { addItem(44) }} />
-            
+        <tr>
+                <th>Click the Below Icon for as many items were not used</th>
+        </tr>
+            <img src="/Other/Mix_Mix_profileicon.png" onClick={() => { addItem(404) }} />
         </table>
         
       
