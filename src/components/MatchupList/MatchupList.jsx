@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import './MatchupList.css';
 
 
 function MatchupList() {
@@ -28,8 +29,6 @@ console.log('matchup Reducer currently has', matches);
         myCharacter: myCharacter
       }
     });
-  
-  
   }; // end registerUser
   return (
     <>
@@ -161,41 +160,30 @@ console.log('matchup Reducer currently has', matches);
 
     <div className="container">
       <h2>Matchups</h2>
-      <p>All of the Selected Matchs can be seen below:</p>
-      <div className="tables-container">
-
-          {matches.map(match => {
-            return (
-            <div key={match.id}>
-              <div>{match.outcome}</div>
-              <div>{match.myCharacter}</div>
-              <div>{match.enemyCharacter}</div>
-              <div>{match.Item1}</div>
-              <div>{match.Item2}</div>
-              <div>{match.Item3}</div>
-              <div>{match.Item4}</div>
-              <div>{match.Item5}</div>
-              <div>{match.Item6}</div>
-            </div>
-            );
-          })}
-
-   </div>
+        <p>All of the Selected Matchs can be seen below:</p>
+        <div>
+          <h2>Matchups</h2>
+          <table>
+            <tbody>
+              {matches.map(match => {
+                return (
+                  <tr key={match.id}>
+                    <td>{match.outcome}</td>
+                    <td>{match.myCharacter}<img className="content_img" src={match.player_image_path} /></td>
+                    <td>{match.enemyCharacter}<img className="content_img" src={match.enemy_image_path} /></td>
+                    <td>{match.Item1}<img className="content_img" id="image_text"src={match.item1_image_path}/></td>
+                    <td>{match.Item2}<img className="content_img" id="image_text"src={match.item2_image_path}/></td>
+                    <td>{match.Item3}<img className="content_img" id="image_text"src={match.item3_image_path}/></td>
+                    <td>{match.Item4}<img className="content_img" id="image_text"src={match.item4_image_path}/></td>
+                    <td>{match.Item5}<img className="content_img" id="image_text"src={match.item5_image_path}/></td>
+                    <td>{match.Item6}<img className="content_img" id="image_text"src={match.item6_image_path}/></td>
+                  </tr>
+                )})}
+            </tbody>
+          </table>
+        </div>
    </div>
   </>
-
-
-
-
-
-
-
-
-
-
-
-
-
   );
 }
 

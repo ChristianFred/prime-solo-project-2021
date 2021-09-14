@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './MatchupEdit.css';
 
 
 function MatchupEdit() {
@@ -169,15 +170,15 @@ console.log('matchup Reducer currently has', matches);
                   {matches.map(match => {
                     return (
                       <tr key={match.id}>
-                            <td>{match.outcome}</td>
-                             <td>{match.myCharacter}</td>
-                             <td>{match.enemyCharacter}</td>
-                            <td>{match.Item1}</td>
-                            <td>{match.Item2}</td>
-                            <td>{match.Item3}</td>
-                            <td>{match.Item4}</td>
-                            <td>{match.Item5}</td>
-                            <td>{match.Item6}</td>
+                        <td>{match.outcome}</td>
+                        <td>{match.myCharacter}<img className="content_img" src={match.player_image_path} /></td>
+                        <td>{match.enemyCharacter}<img className="content_img" src={match.enemy_image_path} /></td>
+                        <td>{match.Item1}<img className="content_img" id="image_text" src={match.item1_image_path} /></td>
+                        <td>{match.Item2}<img className="content_img" id="image_text" src={match.item2_image_path} /></td>
+                        <td>{match.Item3}<img className="content_img" id="image_text" src={match.item3_image_path} /></td>
+                        <td>{match.Item4}<img className="content_img" id="image_text" src={match.item4_image_path} /></td>
+                        <td>{match.Item5}<img className="content_img" id="image_text" src={match.item5_image_path} /></td>
+                        <td>{match.Item6}<img className="content_img" id="image_text" src={match.item6_image_path} /></td>
                             <td><button onClick={() => {
                           dispatch({ type: 'SEND_TO_EDITOR', payload: { 
                             id: match.id, 
