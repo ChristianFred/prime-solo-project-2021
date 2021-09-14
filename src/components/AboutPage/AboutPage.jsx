@@ -9,7 +9,7 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <p>This Webpage will show info about the current version of the application. It will also show what version of league it's set for as well as list the upcoming additions to the application.</p>
       </div>
     </div>
   );
