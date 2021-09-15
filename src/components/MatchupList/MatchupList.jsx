@@ -6,6 +6,7 @@ import './MatchupList.css';
 function MatchupList() {
 const [myCharacter, setCharacter] = useState('');
 const [enemy, setEnemy] = useState('');
+const [word, setWord] = useState('');
 const dispatch = useDispatch();
 const matches = useSelector((store) => store.matchupReducer);
 console.log('matchup Reducer currently has', matches);
@@ -32,12 +33,7 @@ const outcomeOfMatch = ""
     });
   }; // end registerUser
 
-  if (matches.outcome === 1){
-    outcomeOfMatch = "Won"
-  }
-  else if(matches.outcome === 2){
-    outcomeOfMatch = 'Lost'
-  }
+  
   return (
     <>
     <form className="formPanel" onSubmit={searchMatchup}>
@@ -173,6 +169,13 @@ const outcomeOfMatch = ""
           <table className="Table" >
             <tbody>
               {matches.map(match => {
+                let word = ""
+                if (match.outcome === 1){
+                  word = "Win"
+                }
+                else if (match.outcome === 2){
+                  word = "Lost"
+                }
                 return (
                 <><tr key={match.id}>
                     <td>Game Status</td>
@@ -185,8 +188,8 @@ const outcomeOfMatch = ""
                     <td>{match.Item5}</td>
                     <td>{match.Item6}</td>
                   </tr>
-                  <tr key={match.id}>
-                    <td>{match.outcome}</td>
+                  <tr key={match.id+'images'}>
+                    <td>{word}</td>
                     <td><img className="content_img" src={match.player_image_path} /></td>
                     <td><img className="content_img" src={match.enemy_image_path} /></td>
                     <td><img className="content_img" id="image_text" src={match.item1_image_path} /></td>

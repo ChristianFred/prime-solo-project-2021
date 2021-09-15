@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import "./MatchupForm.css";
 
 function MatchupForm() {
     const [myCharacter, setMyCharacter] = useState('');
@@ -7,7 +8,8 @@ function MatchupForm() {
     const [outcome, setOutcome] = useState('');
     const dispatch = useDispatch();
     const matchItems = [];
-    matchItems.length = Math.min(matchItems.length, 5);
+    
+    //setDisplay([... display])
 
     const createMatchup = (event) => {
         event.preventDefault();
@@ -158,11 +160,10 @@ return (
         <input id="Lost" type="radio" name="outcome" value="2" onChange={(event) => setOutcome(event.target.value)}></input>
             <label htmlFor="Lost">Lost</label>
     <p>Please select the Items used for the Match:</p>
+    <p> These are the items you have currently selected: </p>
+
     <table>
         <tbody>
-        <tr>
-            <th>Items Chosen</th>
-        </tr>
         <tr>
             <th>Starter Items</th>
         </tr>

@@ -59,11 +59,6 @@ Button
   text-decoration: none;
 }
 
-.icon:hover {
-  background-color: #919292;
-  text-decoration: none;
-}
-
 .icon {
   position: relative;
 }
