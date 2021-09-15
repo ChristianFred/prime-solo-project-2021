@@ -18,6 +18,25 @@ function* searchMatchup(action) {
     }
 }
 
+function* searchEnemyMatchup(action) {
+    console.log('searchMatchup response:', action.payload.enemy);
+    try {
+        const res = yield axios.get(`/api/Matchup/enemy`, {
+            params: {
+                characterId: action.payload.enemy,
+                type: 'enemyCharacter'
+            }
+        });
+        console.log('action.payload.id:', action.payload.enemy);
+        yield put({
+            type: 'SET_MATCHUP_LIST',
+            payload: res.data
+        })
+    } catch (error) {
+        console.log('error in searchEnemyMatchup', error);
+    }
+}
+
 function* addMatchup(action) {
     try {
         // passes the payload to the server
@@ -50,6 +69,7 @@ function* editMatchup(action) {
 
 function* MatchupSaga() {
     yield takeLatest('FETCH_SPECIFIC_MATCHUP', searchMatchup);
+    yield takeLatest('FETCH_ENEMY_MATCHUP', searchEnemyMatchup);
     yield takeLatest('ADD_MATCHUP', addMatchup);
     yield takeLatest('DELETE_MATCHUP', deleteMatchup);
     yield takeLatest('EDIT_MATCHUP', editMatchup);

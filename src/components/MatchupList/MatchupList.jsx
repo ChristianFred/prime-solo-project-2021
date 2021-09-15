@@ -9,6 +9,7 @@ const [enemy, setEnemy] = useState('');
 const dispatch = useDispatch();
 const matches = useSelector((store) => store.matchupReducer);
 console.log('matchup Reducer currently has', matches);
+const outcomeOfMatch = ""
 
   const searchEnemyMatchup = (event) => {
     event.preventDefault();
@@ -30,6 +31,13 @@ console.log('matchup Reducer currently has', matches);
       }
     });
   }; // end registerUser
+
+  if (matches.outcome === 1){
+    outcomeOfMatch = "Won"
+  }
+  else if(matches.outcome === 2){
+    outcomeOfMatch = 'Lost'
+  }
   return (
     <>
     <form className="formPanel" onSubmit={searchMatchup}>
@@ -158,26 +166,36 @@ console.log('matchup Reducer currently has', matches);
         </div>
     </form>
 
-    <div className="container">
+      <div className="formPanel2">
       <h2>Matchups</h2>
         <p>All of the Selected Matchs can be seen below:</p>
         <div>
-          <h2>Matchups</h2>
-          <table>
+          <table className="Table" >
             <tbody>
               {matches.map(match => {
                 return (
+                <><tr key={match.id}>
+                    <td>Game Status</td>
+                    <td>{match.myCharacter}</td>
+                    <td>{match.enemyCharacter}</td>
+                    <td>{match.Item1}</td>
+                    <td>{match.Item2}</td>
+                    <td>{match.Item3}</td>
+                    <td>{match.Item4}</td>
+                    <td>{match.Item5}</td>
+                    <td>{match.Item6}</td>
+                  </tr>
                   <tr key={match.id}>
                     <td>{match.outcome}</td>
-                    <td>{match.myCharacter}<img className="content_img" src={match.player_image_path} /></td>
-                    <td>{match.enemyCharacter}<img className="content_img" src={match.enemy_image_path} /></td>
-                    <td>{match.Item1}<img className="content_img" id="image_text"src={match.item1_image_path}/></td>
-                    <td>{match.Item2}<img className="content_img" id="image_text"src={match.item2_image_path}/></td>
-                    <td>{match.Item3}<img className="content_img" id="image_text"src={match.item3_image_path}/></td>
-                    <td>{match.Item4}<img className="content_img" id="image_text"src={match.item4_image_path}/></td>
-                    <td>{match.Item5}<img className="content_img" id="image_text"src={match.item5_image_path}/></td>
-                    <td>{match.Item6}<img className="content_img" id="image_text"src={match.item6_image_path}/></td>
-                  </tr>
+                    <td><img className="content_img" src={match.player_image_path} /></td>
+                    <td><img className="content_img" src={match.enemy_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item1_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item2_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item3_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item4_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item5_image_path} /></td>
+                      <td><img className="content_img" id="image_text" src={match.item6_image_path} /></td>
+                    </tr></>
                 )})}
             </tbody>
           </table>

@@ -29,11 +29,11 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #011b1b;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
-  color: #f8f8f8;
+  background-color: #3b3b38;
+  color: #ffffff;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
@@ -55,8 +55,28 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #919292;
   text-decoration: none;
+}
+
+.icon:hover {
+  background-color: #919292;
+  text-decoration: none;
+}
+
+.icon {
+  position: relative;
+}
+
+.icon:after {
+  position: absolute;
+  	height: 100%;
+  	width: 100%;
+  	background-color: rgba(0,0,0,.5);
+  	top: 0;
+  	left: 0;
+  	display: block;
+  	content: "";
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
@@ -72,8 +92,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color: #e06635;
+  color: #454646;
 }
 
 /* --------------------------------------------------------------------------------
@@ -101,7 +121,18 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: #dbb741;
+  border-radius: 30px;
+  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+}
+
+.formPanel2 {
+  box-sizing: content-box;
+  width: 800px;
+  max-width: 100%;
+  padding: 5px;
+  margin: 0 auto 20px;
+  background-color: #dbb741;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
@@ -109,4 +140,9 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+Table, th, td {
+  border-style: none solid solid none;
+  border-color: rgb(119, 108, 23);
 }

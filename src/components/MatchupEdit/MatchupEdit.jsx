@@ -161,25 +161,38 @@ console.log('matchup Reducer currently has', matches);
         </div>
     </form>
 
-      
-      <p>All of the Selected Matchs can be seen below:</p>
-             <div>
-                <h2>Matchups</h2>
-                <table>
+          <div className="formPanel2">
+          <h2>Matchups</h2>
+            <p>All of the Selected Matchs can be seen below:</p>
+            <div>
+              <table className="Table" >
                 <tbody>
                   {matches.map(match => {
                     return (
+                    <><tr key={match.id}>
+                        <td>Game Status</td>
+                        <td>{match.myCharacter}</td>
+                        <td>{match.enemyCharacter}</td>
+                        <td>{match.Item1}</td>
+                        <td>{match.Item2}</td>
+                        <td>{match.Item3}</td>
+                        <td>{match.Item4}</td>
+                        <td>{match.Item5}</td>
+                        <td>{match.Item6}</td>
+                        <td>Edit Match</td>
+                        <td>Delete Match</td>
+                      </tr>
                       <tr key={match.id}>
-                        <td>{match.outcome}</td>
-                        <td>{match.myCharacter}<img className="content_img" src={match.player_image_path} /></td>
-                        <td>{match.enemyCharacter}<img className="content_img" src={match.enemy_image_path} /></td>
-                        <td>{match.Item1}<img className="content_img" id="image_text" src={match.item1_image_path} /></td>
-                        <td>{match.Item2}<img className="content_img" id="image_text" src={match.item2_image_path} /></td>
-                        <td>{match.Item3}<img className="content_img" id="image_text" src={match.item3_image_path} /></td>
-                        <td>{match.Item4}<img className="content_img" id="image_text" src={match.item4_image_path} /></td>
-                        <td>{match.Item5}<img className="content_img" id="image_text" src={match.item5_image_path} /></td>
-                        <td>{match.Item6}<img className="content_img" id="image_text" src={match.item6_image_path} /></td>
-                            <td><button onClick={() => {
+                    <td>{match.outcome}</td>
+                    <td><img className="content_img" src={match.player_image_path} /></td>
+                    <td><img className="content_img" src={match.enemy_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item1_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item2_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item3_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item4_image_path} /></td>
+                    <td><img className="content_img" id="image_text" src={match.item5_image_path} /></td>
+                      <td><img className="content_img" id="image_text" src={match.item6_image_path} /></td>
+                      <td><button onClick={() => {
                           dispatch({ type: 'SEND_TO_EDITOR', payload: { 
                             id: match.id, 
                             myCharacter: match.myCharacter,
@@ -193,11 +206,12 @@ console.log('matchup Reducer currently has', matches);
                             Item6: match.Item6}}), history.push('/MatchupEditor')}}>Edit</button></td>
                             <td><button onClick={() => {
                                dispatch({ type: 'DELETE_MATCHUP', payload: match.id})}}>Delete</button></td>
-                      </tr>
+                      </tr></>
                     );
                 })}
             </tbody>
           </table>
+        </div>
       </div>
     </>
   );

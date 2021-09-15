@@ -158,7 +158,11 @@ return (
         <input id="Lost" type="radio" name="outcome" value="2" onChange={(event) => setOutcome(event.target.value)}></input>
             <label htmlFor="Lost">Lost</label>
     <p>Please select the Items used for the Match:</p>
-        <table>
+    <table>
+        <tbody>
+        <tr>
+            <th>Items Chosen</th>
+        </tr>
         <tr>
             <th>Starter Items</th>
         </tr>
@@ -364,7 +368,8 @@ return (
                 <th>Click the Below Icon for as many items were not used</th>
         </tr>
             <img src="/Other/Mix_Mix_profileicon.png" onClick={() => { addItem(404) }} />
-        </table>
+        </tbody>
+    </table>
         
       
             <div>

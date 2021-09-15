@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">League of Legends Matchup App</h2>
+        <img className="Title" src="/Other/Title.png"></img><h1 className="nav-title">Matchup App</h1>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
