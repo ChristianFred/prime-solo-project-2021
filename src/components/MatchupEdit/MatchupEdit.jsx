@@ -8,6 +8,7 @@ function MatchupEdit() {
 const [myCharacter, setCharacter] = useState('');
 const [enemy, setEnemy] = useState('');
 const dispatch = useDispatch();
+const [word, setWord] = useState('');
 const matches = useSelector((store) => store.matchupReducer);
 const history = useHistory();
 console.log('matchup Reducer currently has', matches);
@@ -168,6 +169,13 @@ console.log('matchup Reducer currently has', matches);
               <table className="Table" >
                 <tbody>
                   {matches.map(match => {
+                    let word = ""
+                    if (match.outcome === 1) {
+                      word = "Win"
+                    }
+                    else if (match.outcome === 2) {
+                      word = "Lost"
+                    }
                     return (
                     <><tr key={match.id}>
                         <td>Game Status</td>
@@ -182,8 +190,8 @@ console.log('matchup Reducer currently has', matches);
                         <td>Edit Match</td>
                         <td>Delete Match</td>
                       </tr>
-                      <tr key={match.id}>
-                    <td>{match.outcome}</td>
+                      <tr key={match.id+'images'}>
+                    <td>{word}</td>
                     <td><img className="content_img" src={match.player_image_path} /></td>
                     <td><img className="content_img" src={match.enemy_image_path} /></td>
                     <td><img className="content_img" id="image_text" src={match.item1_image_path} /></td>

@@ -10,7 +10,6 @@ const [word, setWord] = useState('');
 const dispatch = useDispatch();
 const matches = useSelector((store) => store.matchupReducer);
 console.log('matchup Reducer currently has', matches);
-const outcomeOfMatch = ""
 
   const searchEnemyMatchup = (event) => {
     event.preventDefault();
