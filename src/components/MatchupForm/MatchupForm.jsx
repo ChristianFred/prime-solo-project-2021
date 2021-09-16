@@ -39,7 +39,6 @@ console.log('the contents of matchItems is:', matchItems);
 return (
     <form className="formPanel" onSubmit={createMatchup}>
     <h2>Add A new Matchup</h2>
-    <label htmlFor="Played">Your Character:</label>
         <select name="Characters" id="Characters" onChange={(event) => setMyCharacter(event.target.value)}>
             <option value="0">Select a Character</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
@@ -96,7 +95,7 @@ return (
             <option value="154">Ziggs</option><option value="155">Zilean</option><option value="156">Zoe</option>
             <option value="157">Zyra</option>
         </select>
-        <label htmlFor="Enemy">Your Enemy Laner:</label>
+        <label>Your Character</label>
         <select name="Characters" id="Characters" onChange={(event) => setEnemyCharacter(event.target.value)}>
             <option value="0">Select a Character</option>
             <option value="1">Aatrox</option><option value="2">Ahri</option><option value="3">Akali</option>
@@ -153,6 +152,7 @@ return (
             <option value="154">Ziggs</option><option value="155">Zilean</option><option value="156">Zoe</option>
             <option value="157">Zyra</option>
         </select>
+        <label>Their Character</label>
 
     <p>Please select The Outcome of the Match:</p>
         <input id="Won" type="radio" name="outcome" value="1" onChange={(event) => setOutcome(event.target.value)}></input>
@@ -160,7 +160,6 @@ return (
         <input id="Lost" type="radio" name="outcome" value="2" onChange={(event) => setOutcome(event.target.value)}></input>
             <label htmlFor="Lost">Lost</label>
     <p>Please select the Items used for the Match:</p>
-    <p> These are the items you have currently selected: </p>
 
     <table>
         <tbody>
